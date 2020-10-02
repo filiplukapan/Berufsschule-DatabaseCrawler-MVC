@@ -1,4 +1,6 @@
-USE test;
+--thanks to chris
+
+USE movies;
 
 CREATE TABLE a(
   id int ,
