@@ -1,0 +1,51 @@
+﻿@model List<databaseCrawlerFinal.Models.castGenres_Result>
+
+@{
+    ViewBag.Title = "Index";
+}
+
+<h2>Index</h2>
+
+<p>
+    @Html.ActionLink("Create New", "Create")
+</p>
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayName("Film")
+        </th>
+        <th>
+            @Html.DisplayName("Director")
+        </th>
+        <th>
+            @Html.DisplayName("Year")
+        </th>
+        <th>
+            @Html.DisplayName("Genre Titel")
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.movie_title)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.director)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.year)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.genre_title)
+        </td>
+        <td>
+            @Html.ActionLink("Edit", "Edit", new { id=item.movie_id }) |
+            @Html.ActionLink("Details", "Details", new { id=item.movie_id }) |
+            @Html.ActionLink("Delete", "Delete", new { id=item.movie_id })
+        </td>
+    </tr>
+}
+
+</table>

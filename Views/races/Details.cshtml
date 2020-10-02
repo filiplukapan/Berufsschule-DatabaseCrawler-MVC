@@ -1,0 +1,26 @@
+﻿@model databaseCrawlerFinal.Models.races
+
+@{
+    ViewBag.Title = "Details";
+}
+
+<h2>Details</h2>
+
+<div>
+    <h4>races</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.race_name)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.race_name)
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { id = Model.race_id }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>

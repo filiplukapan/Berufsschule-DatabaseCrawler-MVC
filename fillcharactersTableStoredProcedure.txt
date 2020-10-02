@@ -1,0 +1,26 @@
+USE [movies]
+GO
+
+/****** Object:  StoredProcedure [dbo].[fillcharactersTable]    Script Date: 02.10.2020 09:03:27 ******/
+SET ANSI_NULLS ON
+GO
+
+SET QUOTED_IDENTIFIER ON
+GO
+
+ALTER Procedure [dbo].[fillcharactersTable]
+@character_id INT,
+@character_name VARCHAR(255),
+@race_id INT
+AS
+
+BEGIN
+
+INSERT INTO characters (character_id, character_name, race_id)
+        VALUES (@character_id, @character_name, @race_id);
+
+END;
+
+GO
+
+

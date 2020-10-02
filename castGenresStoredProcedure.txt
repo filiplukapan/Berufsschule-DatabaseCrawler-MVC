@@ -1,0 +1,29 @@
+USE [movies]
+GO
+
+/****** Object:  StoredProcedure [dbo].[castGenres]    Script Date: 02.10.2020 09:04:04 ******/
+SET ANSI_NULLS ON
+GO
+
+SET QUOTED_IDENTIFIER ON
+GO
+
+
+
+ALTER Procedure [dbo].[castGenres]
+AS
+BEGIN
+
+SELECT m.movie_id,
+m.movie_title,
+m.director,
+m.year,
+m.genre_id,
+g.genre_title
+FROM movies as m
+LEFT JOIN genres as g
+on (m.genre_id = g.genre_id);
+END;
+GO
+
+

@@ -1,0 +1,627 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+      <Schema Namespace="moviesModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="a">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="int" Nullable="false" />
+          <Property Name="name" Type="varchar" MaxLength="20" Nullable="false" />
+          <Property Name="enemy" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="b">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="int" Nullable="false" />
+          <Property Name="name" Type="varchar" MaxLength="20" Nullable="false" />
+          <Property Name="best_friend" Type="int" />
+        </EntityType>
+        <EntityType Name="c">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="int" Nullable="false" />
+          <Property Name="name" Type="varchar" MaxLength="20" Nullable="false" />
+        </EntityType>
+        <EntityType Name="characters">
+          <Key>
+            <PropertyRef Name="character_id" />
+          </Key>
+          <Property Name="character_id" Type="int" Nullable="false" />
+          <Property Name="character_name" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="race_id" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="director">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="int" Nullable="false" />
+          <Property Name="firstname" Type="varchar" MaxLength="30" Nullable="false" />
+          <Property Name="lastname" Type="varchar" MaxLength="30" Nullable="false" />
+        </EntityType>
+        <EntityType Name="genres">
+          <Key>
+            <PropertyRef Name="genre_id" />
+          </Key>
+          <Property Name="genre_id" Type="int" Nullable="false" />
+          <Property Name="genre_title" Type="varchar" MaxLength="30" Nullable="false" />
+        </EntityType>
+        <EntityType Name="movies">
+          <Key>
+            <PropertyRef Name="movie_id" />
+          </Key>
+          <Property Name="movie_id" Type="int" Nullable="false" />
+          <Property Name="movie_title" Type="varchar" MaxLength="100" Nullable="false" />
+          <Property Name="director" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="year" Type="int" Nullable="false" />
+          <Property Name="genre_id" Type="int" />
+        </EntityType>
+        <EntityType Name="people">
+          <Key>
+            <PropertyRef Name="person_id" />
+          </Key>
+          <Property Name="person_id" Type="int" Nullable="false" />
+          <Property Name="first_name" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="last_name" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="account_type" Type="int" Nullable="false" />
+          <Property Name="dob" Type="int" Nullable="false" />
+          <Property Name="compress_pass" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="hash_pass" Type="varchar" MaxLength="128" Nullable="false" />
+          <Property Name="enc_pass" Type="varchar" MaxLength="50" Nullable="false" />
+        </EntityType>
+        <EntityType Name="products">
+          <Key>
+            <PropertyRef Name="product_id" />
+          </Key>
+          <Property Name="product_id" Type="int" Nullable="false" />
+          <Property Name="product_name" Type="varchar" MaxLength="100" Nullable="false" />
+          <Property Name="product_category" Type="varchar" MaxLength="50" />
+          <Property Name="product_price" Type="decimal" Precision="10" Scale="2" Nullable="false" />
+          <Property Name="product_sku" Type="char" MaxLength="10" Nullable="false" />
+          <Property Name="short_description" Type="varchar" MaxLength="250" />
+          <Property Name="idx_sku" Type="varchar" MaxLength="100" />
+          <Property Name="idx_names" Type="varchar" MaxLength="100" />
+          <Property Name="idx_sku_three" Type="varchar" MaxLength="100" />
+        </EntityType>
+        <EntityType Name="races">
+          <Key>
+            <PropertyRef Name="race_id" />
+          </Key>
+          <Property Name="race_id" Type="int" Nullable="false" />
+          <Property Name="race_name" Type="varchar" MaxLength="30" Nullable="false" />
+        </EntityType>
+        <!--Errors Found During Generation:
+warning 6013: The table/view 'movies.dbo.scifi' does not have a primary key defined and no valid primary key could be inferred. This table/view has been excluded. To use the entity, you will need to review your schema, add the correct keys, and uncomment it.
+        <EntityType Name="scifi">
+          <Property Name="movie_id" Type="int" />
+          <Property Name="movie_title" Type="varchar" MaxLength="100" />
+          <Property Name="genre_title" Type="varchar" MaxLength="30" />
+        </EntityType>-->
+        <EntityType Name="shows">
+          <Key>
+            <PropertyRef Name="show_id" />
+          </Key>
+          <Property Name="show_id" Type="int" Nullable="false" />
+          <Property Name="show_title" Type="varchar" MaxLength="120" Nullable="false" />
+          <Property Name="num_seasons" Type="int" Nullable="false" />
+          <Property Name="initial_year" Type="int" Nullable="false" />
+        </EntityType>
+        <!--Errors Found During Generation:
+warning 6002: The table/view 'movies.dbo.tv' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+        <EntityType Name="tv">
+          <Key>
+            <PropertyRef Name="tv_id" />
+            <PropertyRef Name="tv_title" />
+            <PropertyRef Name="num_seasons" />
+          </Key>
+          <Property Name="tv_id" Type="int" Nullable="false" />
+          <Property Name="tv_title" Type="varchar" MaxLength="120" Nullable="false" />
+          <Property Name="num_seasons" Type="int" Nullable="false" />
+        </EntityType>
+        <!--Errors Found During Generation:
+warning 6002: The table/view 'movies.dbo.MoviesTable' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+        <EntityType Name="MoviesTable">
+          <Key>
+            <PropertyRef Name="movie_id" />
+            <PropertyRef Name="movie_title" />
+            <PropertyRef Name="director" />
+            <PropertyRef Name="year" />
+          </Key>
+          <Property Name="movie_id" Type="int" Nullable="false" />
+          <Property Name="movie_title" Type="varchar" MaxLength="100" Nullable="false" />
+          <Property Name="director" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="year" Type="int" Nullable="false" />
+          <Property Name="genre_id" Type="int" />
+        </EntityType>
+        <Function Name="castGenres" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
+        <Function Name="fillcharactersTable" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="character_id" Type="int" Mode="In" />
+          <Parameter Name="character_name" Type="varchar" Mode="In" />
+          <Parameter Name="race_id" Type="int" Mode="In" />
+        </Function>
+        <Function Name="filldirectorTable" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="id" Type="int" Mode="In" />
+          <Parameter Name="firstname" Type="varchar" Mode="In" />
+          <Parameter Name="lastname" Type="varchar" Mode="In" />
+        </Function>
+        <Function Name="fillgenresTable" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="genre_id" Type="int" Mode="In" />
+          <Parameter Name="genre_title" Type="varchar" Mode="In" />
+        </Function>
+        <Function Name="fillmoviesTable" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="MovieDirector" Type="varchar" Mode="In" />
+          <Parameter Name="MovieGenreId" Type="int" Mode="In" />
+          <Parameter Name="MovieMovieId" Type="int" Mode="In" />
+          <Parameter Name="MovieTitle" Type="varchar" Mode="In" />
+          <Parameter Name="MovieYear" Type="int" Mode="In" />
+        </Function>
+        <Function Name="fillpeopleTable" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="person_id" Type="int" Mode="In" />
+          <Parameter Name="first_name" Type="varchar" Mode="In" />
+          <Parameter Name="last_name" Type="varchar" Mode="In" />
+          <Parameter Name="account_type" Type="int" Mode="In" />
+          <Parameter Name="dob" Type="int" Mode="In" />
+          <Parameter Name="compress_pass" Type="varchar" Mode="In" />
+          <Parameter Name="hash_pass" Type="varchar" Mode="In" />
+          <Parameter Name="enc_pass" Type="varchar" Mode="In" />
+        </Function>
+        <Function Name="fillproductsTable" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="product_id" Type="int" Mode="In" />
+          <Parameter Name="product_name" Type="varchar" Mode="In" />
+          <Parameter Name="product_category" Type="varchar" Mode="In" />
+          <Parameter Name="product_price" Type="decimal" Mode="In" />
+          <Parameter Name="product_sku" Type="char" Mode="In" />
+          <Parameter Name="short_description" Type="varchar" Mode="In" />
+          <Parameter Name="idx_sku" Type="varchar" Mode="In" />
+          <Parameter Name="idx_names" Type="varchar" Mode="In" />
+          <Parameter Name="idx_sku_three" Type="varchar" Mode="In" />
+        </Function>
+        <Function Name="fillracesTable" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="race_id" Type="int" Mode="In" />
+          <Parameter Name="race_name" Type="varchar" Mode="In" />
+        </Function>
+        <Function Name="fillscifiTable" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="movie_id" Type="int" Mode="In" />
+          <Parameter Name="movie_title" Type="varchar" Mode="In" />
+          <Parameter Name="genre_title" Type="varchar" Mode="In" />
+        </Function>
+        <Function Name="fillshowsTable" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="show_id" Type="int" Mode="In" />
+          <Parameter Name="show_title" Type="varchar" Mode="In" />
+          <Parameter Name="num_seasons" Type="int" Mode="In" />
+          <Parameter Name="initial_year" Type="int" Mode="In" />
+        </Function>
+        <Function Name="filltvTable" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="tv_id" Type="int" Mode="In" />
+          <Parameter Name="tv_title" Type="varchar" Mode="In" />
+          <Parameter Name="num_seasons" Type="int" Mode="In" />
+        </Function>
+        <EntityContainer Name="moviesModelStoreContainer">
+          <EntitySet Name="a" EntityType="Self.a" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="b" EntityType="Self.b" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="c" EntityType="Self.c" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="characters" EntityType="Self.characters" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="director" EntityType="Self.director" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="genres" EntityType="Self.genres" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="movies" EntityType="Self.movies" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="people" EntityType="Self.people" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="products" EntityType="Self.products" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="races" EntityType="Self.races" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="shows" EntityType="Self.shows" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="tv" EntityType="Self.tv" store:Type="Tables" store:Schema="dbo">
+            <DefiningQuery>SELECT 
+    [tv].[tv_id] AS [tv_id], 
+    [tv].[tv_title] AS [tv_title], 
+    [tv].[num_seasons] AS [num_seasons]
+    FROM [dbo].[tv] AS [tv]</DefiningQuery>
+          </EntitySet>
+          <EntitySet Name="MoviesTable" EntityType="Self.MoviesTable" store:Type="Views" store:Schema="dbo">
+            <DefiningQuery>SELECT 
+    [MoviesTable].[movie_id] AS [movie_id], 
+    [MoviesTable].[movie_title] AS [movie_title], 
+    [MoviesTable].[director] AS [director], 
+    [MoviesTable].[year] AS [year], 
+    [MoviesTable].[genre_id] AS [genre_id]
+    FROM [dbo].[MoviesTable] AS [MoviesTable]</DefiningQuery>
+          </EntitySet>
+        </EntityContainer>
+      </Schema>
+    </edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="moviesModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityType Name="a">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int32" Nullable="false" />
+          <Property Name="name" Type="String" MaxLength="20" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="enemy" Type="Int32" Nullable="false" />
+        </EntityType>
+        <EntityType Name="b">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int32" Nullable="false" />
+          <Property Name="name" Type="String" MaxLength="20" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="best_friend" Type="Int32" />
+        </EntityType>
+        <EntityType Name="c">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int32" Nullable="false" />
+          <Property Name="name" Type="String" MaxLength="20" FixedLength="false" Unicode="false" Nullable="false" />
+        </EntityType>
+        <EntityType Name="characters">
+          <Key>
+            <PropertyRef Name="character_id" />
+          </Key>
+          <Property Name="character_id" Type="Int32" Nullable="false" />
+          <Property Name="character_name" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="race_id" Type="Int32" Nullable="false" />
+        </EntityType>
+        <EntityType Name="director">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int32" Nullable="false" />
+          <Property Name="firstname" Type="String" MaxLength="30" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="lastname" Type="String" MaxLength="30" FixedLength="false" Unicode="false" Nullable="false" />
+        </EntityType>
+        <EntityType Name="genres">
+          <Key>
+            <PropertyRef Name="genre_id" />
+          </Key>
+          <Property Name="genre_id" Type="Int32" Nullable="false" />
+          <Property Name="genre_title" Type="String" MaxLength="30" FixedLength="false" Unicode="false" Nullable="false" />
+        </EntityType>
+        <EntityType Name="movies">
+          <Key>
+            <PropertyRef Name="movie_id" />
+          </Key>
+          <Property Name="movie_id" Type="Int32" Nullable="false" />
+          <Property Name="movie_title" Type="String" MaxLength="100" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="director" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="year" Type="Int32" Nullable="false" />
+          <Property Name="genre_id" Type="Int32" />
+        </EntityType>
+        <EntityType Name="people">
+          <Key>
+            <PropertyRef Name="person_id" />
+          </Key>
+          <Property Name="person_id" Type="Int32" Nullable="false" />
+          <Property Name="first_name" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="last_name" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="account_type" Type="Int32" Nullable="false" />
+          <Property Name="dob" Type="Int32" Nullable="false" />
+          <Property Name="compress_pass" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="hash_pass" Type="String" MaxLength="128" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="enc_pass" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+        </EntityType>
+        <EntityType Name="products">
+          <Key>
+            <PropertyRef Name="product_id" />
+          </Key>
+          <Property Name="product_id" Type="Int32" Nullable="false" />
+          <Property Name="product_name" Type="String" MaxLength="100" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="product_category" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="product_price" Type="Decimal" Precision="10" Scale="2" Nullable="false" />
+          <Property Name="product_sku" Type="String" MaxLength="10" FixedLength="true" Unicode="false" Nullable="false" />
+          <Property Name="short_description" Type="String" MaxLength="250" FixedLength="false" Unicode="false" />
+          <Property Name="idx_sku" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="idx_names" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="idx_sku_three" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+        </EntityType>
+        <EntityType Name="races">
+          <Key>
+            <PropertyRef Name="race_id" />
+          </Key>
+          <Property Name="race_id" Type="Int32" Nullable="false" />
+          <Property Name="race_name" Type="String" MaxLength="30" FixedLength="false" Unicode="false" Nullable="false" />
+        </EntityType>
+        <EntityType Name="shows">
+          <Key>
+            <PropertyRef Name="show_id" />
+          </Key>
+          <Property Name="show_id" Type="Int32" Nullable="false" />
+          <Property Name="show_title" Type="String" MaxLength="120" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="num_seasons" Type="Int32" Nullable="false" />
+          <Property Name="initial_year" Type="Int32" Nullable="false" />
+        </EntityType>
+        <EntityType Name="tv">
+          <Key>
+            <PropertyRef Name="tv_id" />
+            <PropertyRef Name="tv_title" />
+            <PropertyRef Name="num_seasons" />
+          </Key>
+          <Property Name="tv_id" Type="Int32" Nullable="false" />
+          <Property Name="tv_title" Type="String" MaxLength="120" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="num_seasons" Type="Int32" Nullable="false" />
+        </EntityType>
+        <EntityType Name="MoviesTable">
+          <Key>
+            <PropertyRef Name="movie_id" />
+            <PropertyRef Name="movie_title" />
+            <PropertyRef Name="director" />
+            <PropertyRef Name="year" />
+          </Key>
+          <Property Name="movie_id" Type="Int32" Nullable="false" />
+          <Property Name="movie_title" Type="String" MaxLength="100" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="director" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="year" Type="Int32" Nullable="false" />
+          <Property Name="genre_id" Type="Int32" />
+        </EntityType>
+        <EntityContainer Name="moviesEntities" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="a" EntityType="Self.a" />
+          <EntitySet Name="b" EntityType="Self.b" />
+          <EntitySet Name="c" EntityType="Self.c" />
+          <EntitySet Name="characters" EntityType="Self.characters" />
+          <EntitySet Name="director" EntityType="Self.director" />
+          <EntitySet Name="genres" EntityType="Self.genres" />
+          <EntitySet Name="movies" EntityType="Self.movies" />
+          <EntitySet Name="people" EntityType="Self.people" />
+          <EntitySet Name="products" EntityType="Self.products" />
+          <EntitySet Name="races" EntityType="Self.races" />
+          <EntitySet Name="shows" EntityType="Self.shows" />
+          <EntitySet Name="tv" EntityType="Self.tv" />
+          <EntitySet Name="MoviesTable" EntityType="Self.MoviesTable" />
+          <FunctionImport Name="castGenres" ReturnType="Collection(moviesModel.castGenres_Result)" />
+          <FunctionImport Name="fillcharactersTable">
+            <Parameter Name="character_id" Mode="In" Type="Int32" />
+            <Parameter Name="character_name" Mode="In" Type="String" />
+            <Parameter Name="race_id" Mode="In" Type="Int32" />
+          </FunctionImport>
+          <FunctionImport Name="filldirectorTable">
+            <Parameter Name="id" Mode="In" Type="Int32" />
+            <Parameter Name="firstname" Mode="In" Type="String" />
+            <Parameter Name="lastname" Mode="In" Type="String" />
+          </FunctionImport>
+          <FunctionImport Name="fillgenresTable">
+            <Parameter Name="genre_id" Mode="In" Type="Int32" />
+            <Parameter Name="genre_title" Mode="In" Type="String" />
+          </FunctionImport>
+          <FunctionImport Name="fillmoviesTable">
+            <Parameter Name="MovieDirector" Mode="In" Type="String" />
+            <Parameter Name="MovieGenreId" Mode="In" Type="Int32" />
+            <Parameter Name="MovieMovieId" Mode="In" Type="Int32" />
+            <Parameter Name="MovieTitle" Mode="In" Type="String" />
+            <Parameter Name="MovieYear" Mode="In" Type="Int32" />
+          </FunctionImport>
+          <FunctionImport Name="fillpeopleTable">
+            <Parameter Name="person_id" Mode="In" Type="Int32" />
+            <Parameter Name="first_name" Mode="In" Type="String" />
+            <Parameter Name="last_name" Mode="In" Type="String" />
+            <Parameter Name="account_type" Mode="In" Type="Int32" />
+            <Parameter Name="dob" Mode="In" Type="Int32" />
+            <Parameter Name="compress_pass" Mode="In" Type="String" />
+            <Parameter Name="hash_pass" Mode="In" Type="String" />
+            <Parameter Name="enc_pass" Mode="In" Type="String" />
+          </FunctionImport>
+          <FunctionImport Name="fillproductsTable">
+            <Parameter Name="product_id" Mode="In" Type="Int32" />
+            <Parameter Name="product_name" Mode="In" Type="String" />
+            <Parameter Name="product_category" Mode="In" Type="String" />
+            <Parameter Name="product_price" Mode="In" Type="Decimal" />
+            <Parameter Name="product_sku" Mode="In" Type="String" />
+            <Parameter Name="short_description" Mode="In" Type="String" />
+            <Parameter Name="idx_sku" Mode="In" Type="String" />
+            <Parameter Name="idx_names" Mode="In" Type="String" />
+            <Parameter Name="idx_sku_three" Mode="In" Type="String" />
+          </FunctionImport>
+          <FunctionImport Name="fillracesTable">
+            <Parameter Name="race_id" Mode="In" Type="Int32" />
+            <Parameter Name="race_name" Mode="In" Type="String" />
+          </FunctionImport>
+          <FunctionImport Name="fillscifiTable">
+            <Parameter Name="movie_id" Mode="In" Type="Int32" />
+            <Parameter Name="movie_title" Mode="In" Type="String" />
+            <Parameter Name="genre_title" Mode="In" Type="String" />
+          </FunctionImport>
+          <FunctionImport Name="fillshowsTable">
+            <Parameter Name="show_id" Mode="In" Type="Int32" />
+            <Parameter Name="show_title" Mode="In" Type="String" />
+            <Parameter Name="num_seasons" Mode="In" Type="Int32" />
+            <Parameter Name="initial_year" Mode="In" Type="Int32" />
+          </FunctionImport>
+          <FunctionImport Name="filltvTable">
+            <Parameter Name="tv_id" Mode="In" Type="Int32" />
+            <Parameter Name="tv_title" Mode="In" Type="String" />
+            <Parameter Name="num_seasons" Mode="In" Type="Int32" />
+          </FunctionImport>
+        </EntityContainer>
+        <ComplexType Name="castGenres_Result">
+          <Property Type="Int32" Name="movie_id" Nullable="false" />
+          <Property Type="String" Name="movie_title" Nullable="false" MaxLength="100" />
+          <Property Type="String" Name="director" Nullable="false" MaxLength="50" />
+          <Property Type="Int32" Name="year" Nullable="false" />
+          <Property Type="Int32" Name="genre_id" Nullable="true" />
+          <Property Type="String" Name="genre_title" Nullable="true" MaxLength="30" />
+        </ComplexType>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="moviesModelStoreContainer" CdmEntityContainer="moviesEntities">
+          <EntitySetMapping Name="a">
+            <EntityTypeMapping TypeName="moviesModel.a">
+              <MappingFragment StoreEntitySet="a">
+                <ScalarProperty Name="id" ColumnName="id" />
+                <ScalarProperty Name="name" ColumnName="name" />
+                <ScalarProperty Name="enemy" ColumnName="enemy" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="b">
+            <EntityTypeMapping TypeName="moviesModel.b">
+              <MappingFragment StoreEntitySet="b">
+                <ScalarProperty Name="id" ColumnName="id" />
+                <ScalarProperty Name="name" ColumnName="name" />
+                <ScalarProperty Name="best_friend" ColumnName="best_friend" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="c">
+            <EntityTypeMapping TypeName="moviesModel.c">
+              <MappingFragment StoreEntitySet="c">
+                <ScalarProperty Name="id" ColumnName="id" />
+                <ScalarProperty Name="name" ColumnName="name" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="characters">
+            <EntityTypeMapping TypeName="moviesModel.characters">
+              <MappingFragment StoreEntitySet="characters">
+                <ScalarProperty Name="character_id" ColumnName="character_id" />
+                <ScalarProperty Name="character_name" ColumnName="character_name" />
+                <ScalarProperty Name="race_id" ColumnName="race_id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="director">
+            <EntityTypeMapping TypeName="moviesModel.director">
+              <MappingFragment StoreEntitySet="director">
+                <ScalarProperty Name="id" ColumnName="id" />
+                <ScalarProperty Name="firstname" ColumnName="firstname" />
+                <ScalarProperty Name="lastname" ColumnName="lastname" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="genres">
+            <EntityTypeMapping TypeName="moviesModel.genres">
+              <MappingFragment StoreEntitySet="genres">
+                <ScalarProperty Name="genre_id" ColumnName="genre_id" />
+                <ScalarProperty Name="genre_title" ColumnName="genre_title" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="movies">
+            <EntityTypeMapping TypeName="moviesModel.movies">
+              <MappingFragment StoreEntitySet="movies">
+                <ScalarProperty Name="movie_id" ColumnName="movie_id" />
+                <ScalarProperty Name="movie_title" ColumnName="movie_title" />
+                <ScalarProperty Name="director" ColumnName="director" />
+                <ScalarProperty Name="year" ColumnName="year" />
+                <ScalarProperty Name="genre_id" ColumnName="genre_id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="people">
+            <EntityTypeMapping TypeName="moviesModel.people">
+              <MappingFragment StoreEntitySet="people">
+                <ScalarProperty Name="person_id" ColumnName="person_id" />
+                <ScalarProperty Name="first_name" ColumnName="first_name" />
+                <ScalarProperty Name="last_name" ColumnName="last_name" />
+                <ScalarProperty Name="account_type" ColumnName="account_type" />
+                <ScalarProperty Name="dob" ColumnName="dob" />
+                <ScalarProperty Name="compress_pass" ColumnName="compress_pass" />
+                <ScalarProperty Name="hash_pass" ColumnName="hash_pass" />
+                <ScalarProperty Name="enc_pass" ColumnName="enc_pass" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="products">
+            <EntityTypeMapping TypeName="moviesModel.products">
+              <MappingFragment StoreEntitySet="products">
+                <ScalarProperty Name="product_id" ColumnName="product_id" />
+                <ScalarProperty Name="product_name" ColumnName="product_name" />
+                <ScalarProperty Name="product_category" ColumnName="product_category" />
+                <ScalarProperty Name="product_price" ColumnName="product_price" />
+                <ScalarProperty Name="product_sku" ColumnName="product_sku" />
+                <ScalarProperty Name="short_description" ColumnName="short_description" />
+                <ScalarProperty Name="idx_sku" ColumnName="idx_sku" />
+                <ScalarProperty Name="idx_names" ColumnName="idx_names" />
+                <ScalarProperty Name="idx_sku_three" ColumnName="idx_sku_three" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="races">
+            <EntityTypeMapping TypeName="moviesModel.races">
+              <MappingFragment StoreEntitySet="races">
+                <ScalarProperty Name="race_id" ColumnName="race_id" />
+                <ScalarProperty Name="race_name" ColumnName="race_name" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="shows">
+            <EntityTypeMapping TypeName="moviesModel.shows">
+              <MappingFragment StoreEntitySet="shows">
+                <ScalarProperty Name="show_id" ColumnName="show_id" />
+                <ScalarProperty Name="show_title" ColumnName="show_title" />
+                <ScalarProperty Name="num_seasons" ColumnName="num_seasons" />
+                <ScalarProperty Name="initial_year" ColumnName="initial_year" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="tv">
+            <EntityTypeMapping TypeName="moviesModel.tv">
+              <MappingFragment StoreEntitySet="tv">
+                <ScalarProperty Name="tv_id" ColumnName="tv_id" />
+                <ScalarProperty Name="tv_title" ColumnName="tv_title" />
+                <ScalarProperty Name="num_seasons" ColumnName="num_seasons" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="MoviesTable">
+            <EntityTypeMapping TypeName="moviesModel.MoviesTable">
+              <MappingFragment StoreEntitySet="MoviesTable">
+                <ScalarProperty Name="movie_id" ColumnName="movie_id" />
+                <ScalarProperty Name="movie_title" ColumnName="movie_title" />
+                <ScalarProperty Name="director" ColumnName="director" />
+                <ScalarProperty Name="year" ColumnName="year" />
+                <ScalarProperty Name="genre_id" ColumnName="genre_id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <FunctionImportMapping FunctionImportName="castGenres" FunctionName="moviesModel.Store.castGenres">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="moviesModel.castGenres_Result">
+                <ScalarProperty Name="movie_id" ColumnName="movie_id" />
+                <ScalarProperty Name="movie_title" ColumnName="movie_title" />
+                <ScalarProperty Name="director" ColumnName="director" />
+                <ScalarProperty Name="year" ColumnName="year" />
+                <ScalarProperty Name="genre_id" ColumnName="genre_id" />
+                <ScalarProperty Name="genre_title" ColumnName="genre_title" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="fillcharactersTable" FunctionName="moviesModel.Store.fillcharactersTable" />
+          <FunctionImportMapping FunctionImportName="filldirectorTable" FunctionName="moviesModel.Store.filldirectorTable" />
+          <FunctionImportMapping FunctionImportName="fillgenresTable" FunctionName="moviesModel.Store.fillgenresTable" />
+          <FunctionImportMapping FunctionImportName="fillmoviesTable" FunctionName="moviesModel.Store.fillmoviesTable" />
+          <FunctionImportMapping FunctionImportName="fillpeopleTable" FunctionName="moviesModel.Store.fillpeopleTable" />
+          <FunctionImportMapping FunctionImportName="fillproductsTable" FunctionName="moviesModel.Store.fillproductsTable" />
+          <FunctionImportMapping FunctionImportName="fillracesTable" FunctionName="moviesModel.Store.fillracesTable" />
+          <FunctionImportMapping FunctionImportName="fillscifiTable" FunctionName="moviesModel.Store.fillscifiTable" />
+          <FunctionImportMapping FunctionImportName="fillshowsTable" FunctionName="moviesModel.Store.fillshowsTable" />
+          <FunctionImportMapping FunctionImportName="filltvTable" FunctionName="moviesModel.Store.filltvTable" />
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="false" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="false" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="None" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>

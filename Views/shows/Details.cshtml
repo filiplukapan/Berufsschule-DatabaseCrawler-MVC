@@ -1,0 +1,42 @@
+﻿@model databaseCrawlerFinal.Models.shows
+
+@{
+    ViewBag.Title = "Details";
+}
+
+<h2>Details</h2>
+
+<div>
+    <h4>shows</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.show_title)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.show_title)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.num_seasons)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.num_seasons)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.initial_year)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.initial_year)
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { id = Model.show_id }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>
